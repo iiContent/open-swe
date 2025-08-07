@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import { Context } from "hono";
 import { BlankEnv, BlankInput } from "hono/types";
-import { createLogger, LogLevel } from "../../utils/logger.js";
-import { GitHubApp } from "../../utils/github-app.js";
+import { createLogger, LogLevel } from "../../../utils/logger.js";
+import { GitHubApp } from "../../../utils/github-app.js";
 import { Webhooks } from "@octokit/webhooks";
-import { createLangGraphClient } from "../../utils/langgraph-client.js";
+import { createLangGraphClient } from "../../../utils/langgraph-client.js";
 import {
   GITHUB_INSTALLATION_ID,
   GITHUB_INSTALLATION_NAME,
@@ -21,11 +21,11 @@ import {
   getOpenSWELabel,
   getOpenSWEMaxLabel,
   getOpenSWEMaxAutoAcceptLabel,
-} from "../../utils/github/label.js";
+} from "../../../utils/github/label.js";
 import { ManagerGraphUpdate } from "@open-swe/shared/open-swe/manager/types";
-import { RequestSource } from "../../constants.js";
+import { RequestSource } from "../../../constants.js";
 import { isAllowedUser } from "@open-swe/shared/github/allowed-users";
-import { getOpenSweAppUrl } from "../../utils/url-helpers.js";
+import { getOpenSweAppUrl } from "../../../utils/url-helpers.js";
 import { StreamMode } from "@langchain/langgraph-sdk";
 
 const logger = createLogger(LogLevel.INFO, "GitHubIssueWebhook");
