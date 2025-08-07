@@ -1,6 +1,13 @@
 import { Hono } from "hono";
-import { issueWebhookHandler } from "./github/issue-webhook.js";
+import { issueWebhookHandler as githubIssueWebhookHandler } from "./git/github/issue-webhook.js";
+import { issueWebhookHandler as gitlabIssueWebhookHandler } from "./git/gitlab/issue-webhook.js";
 
 export const app = new Hono();
 
-app.post("/webhooks/github", issueWebhookHandler);
+const provider = process.env.GIT_PROVIDER ?? "github";
+
+if (provider === "gitlab") {
+  app.post("/webhooks/gitlab", gitlabIssueWebhookHandler);
+} else {
+  app.post("/webhooks/github", githubIssueWebhookHandler);
+}
